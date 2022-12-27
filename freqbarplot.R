@@ -1,4 +1,3 @@
-
 #' Frequency of Items (rule based)
 #' 
 #' Plots a bar plot indicating the frequency of the top n items in a data set,
@@ -15,11 +14,19 @@
 #' @export 
 #'
 #' @examples
+#' library(arules)
+#' library(plotly)
+#' library(ggplot2)
 #' data(Adult)
 #' rules <- apriori(Adult, parameter = list(supp = 0.05, conf = 0.09, target = "rules"))
 #' freqbarplot(rules, method="ggplot2")
 #' freqbarplot(rules, method="plotly", end=22) # plot top 22 items
 #' freqbarplot(rules, method="ggplot2", min_threshold = FALSE)
+
+library(arules)
+library(plotly)
+library(ggplot2)
+
 freqbarplot <- function(ruleset,method="plotly",  start=1, end=NA,min_threshold=TRUE){
   
   min_count <- ruleset@info$ntransactions * ruleset@info$support
